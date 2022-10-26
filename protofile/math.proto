@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/ahsanulks/protofile";
+
+message Request {
+  int64 x = 1;
+  int64 y = 2;
+}
+
+message Response {
+  int64 result = 1;
+}
+
+message CountDownRequest {
+  int64 number = 1;
+}
+
+message CountDownResponse {
+  int64 number = 1;
+}
+
+message MultipleSumRequest {
+  int64 number = 1;
+}
+
+message RealtimeMultipleSumRequest {
+  int64 number = 1;
+}
+
+message RealtimeMultipleSumResponse {
+  int64 number = 1;
+}
+
+service AddService {
+  rpc Add(Request) returns (Response);
+  rpc Multiply(Request) returns (Response);
+  rpc CountDown(CountDownRequest) returns (stream CountDownResponse);
+  rpc MultipleSum(stream MultipleSumRequest) returns (Response);
+  rpc RealtimeMultipleSum(stream RealtimeMultipleSumRequest) returns (stream RealtimeMultipleSumRequest);
+}
